@@ -24,12 +24,6 @@ buttonTag.addEventListener("click", function(){
 
 // after start quiz is selcted
 // - time = however long for quiz (top right)
-// - <h1>question</h1> 
-// - <form> <input type="radio" id="1" name="first-qustion" value="first answer">
-//           <input type="radio" id="2" name="first-qustion" value="second answer">
-//           <input type="radio" id="3" name="first-qustion" value="third answer">
-//           <input type="radio" id="4" name="first-qustion" value="fourth answer">
-// - </form>
 
 // - if/else statements to determine if correct or wrong
 // - a way to subtract certain amount of time when wrong
@@ -51,3 +45,10 @@ buttonTag.addEventListener("click", function(){
 // -2 buttons for "go back" and "clear highscores"
 // - go back will reset to original screen
 // - reset highscores will remove <ol>
+
+
+// look at activity 7,
+// -line 8 var question = document.queryselector(question)
+// -line 11 question.textContent = "this is where I can change the content for each question"
+// -I can probably do this for each answer too
+// -set Id for each answer so that there can be click events and then have it register for right/wrong
