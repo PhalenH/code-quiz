@@ -6,15 +6,15 @@ var answerContainer = document.getElementById("answer");
 var resultContainer = document.getElementById("result");
 var timerContainer = document.getElementById("timer");
 var highScoreContainer = document.getElementById("highScore");
-var a1 = document.getElementById("a1");
-var a2 = document.getElementById("a2");
-var a3 = document.getElementById("a3");
-var a4 = document.getElementById("a4");
+var a1 = document.getElementById("1");
+var a2 = document.getElementById("2");
+var a3 = document.getElementById("3");
+var a4 = document.getElementById("4");
 var index = 0
 // -variables to use with functions and if/else statement and to adjust text.Content
 var questionArray = [
   {
-    question: "what color is the sky",
+    question: "what color is the sky?",
     1: "blue",
     2: "yellow",
     3: "red",
@@ -22,20 +22,28 @@ var questionArray = [
     correct: "blue",
   },
   {
-    question: "what smell is the sky",
+    question: "what smell is the sky?",
     1: "blue",
     2: "yellow",
     3: "red",
     4: "orange",
-    correct: "blue",
+    correct: "red",
   },
   {
-    question: "what taste is the sky",
+    question: "what taste is the sky?",
     1: "blue",
     2: "yellow",
     3: "red",
     4: "orange",
-    correct: "blue",
+    correct: "orange",
+  },
+  {
+    question: "what is the sky?",
+    a: "blue",
+    b: "yellow",
+    c: "red",
+    d: "orange",
+    correct: "yellow",
   },
 ];
 
@@ -44,21 +52,37 @@ function initial() {
   document.body.appendChild(buttonTag);
   buttonTag.textContent = "Start Quiz";
   buttonTag.setAttribute("id", "buttonDisplay");
-  // -created button to start quiz
+  // -created button to start quiz, added content, added id to button
 
   var quizExplain = document.createElement("p");
   document.querySelector("#center").appendChild(quizExplain);
   quizExplain.textContent = "Try and answer the following code-related questions withing the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!";
   quizExplain.setAttribute("id", "quizDisplay");
-  // -created p tag to show initial explanation of what the quiz is
+  // -created p tag to show initial explanation of what the quiz is and id for p tag to be styled
 
   buttonTag.addEventListener("click", function () {
     buttonTag.setAttribute("style", "display: none");
     quizExplain.setAttribute("style", "display: none");
+    // - when button clicked hides start quiz and explanation, displays question and answers
     answerContainer.setAttribute("style", "display: block");
     resultContainer.setAttribute("style", "display: block");
+
+    // centerContainer.textContent = JSON.stringify(questionArray[index]);
+    for (const {question, a, b, c, d, correct} of questionArray) {
+        console.log();
+        questionContainer.textContent = question;
+           a1.textContent = a;
+           a2.textContent = b;
+           a3.textContent = c;
+           a4.textContent = d;
+            // - this will attach the question from the array to h1 and answers to each li
+    }
+
+
+
     // - possible move this into new function later
     function changeQ() {
+        
         
     }
     // questionarray[index].question
