@@ -10,40 +10,40 @@ var a1 = document.getElementById("1");
 var a2 = document.getElementById("2");
 var a3 = document.getElementById("3");
 var a4 = document.getElementById("4");
-var index = 0
+var index = 0;
 // -variables to use with functions and if/else statement and to adjust text.Content
 var questionArray = [
   {
-    question: "what color is the sky?",
-    1: "blue",
-    2: "yellow",
-    3: "red",
-    4: "orange",
-    correct: "blue",
+    question: "What does CSS stand for?",
+    a: "Cool sights and sounds",
+    b: "Cascading style sheets",
+    c: "Counter strike software",
+    d: "Character selection screen",
+    correct: "",
   },
   {
-    question: "what smell is the sky?",
-    1: "blue",
-    2: "yellow",
-    3: "red",
-    4: "orange",
-    correct: "red",
+    question: "If I want to selct peaches from the array fruit = ['peaches', 'apples', 'grapes'], what value should I select?",
+    a: "0",
+    b: "1",
+    c: "2",
+    d: "3",
+    correct: "",
   },
   {
-    question: "what taste is the sky?",
-    1: "blue",
-    2: "yellow",
-    3: "red",
-    4: "orange",
-    correct: "orange",
+    question: "What is the answer for '26 % 8'?",
+    a: "null",
+    b: "3.25",
+    c: "0",
+    d: "2",
+    correct: "",
   },
   {
-    question: "what is the sky?",
-    a: "blue",
-    b: "yellow",
-    c: "red",
-    d: "orange",
-    correct: "yellow",
+    question: "When Visiblity: hidden, the selected elements will:",
+    a: "Not appear on the screen but takes up space on the page",
+    b: "Not appear on the screen but will not take up space on the page",
+    c: "Be removed from the HTML code",
+    d: "Not be affected",
+    correct: "",
   },
 ];
 
@@ -67,24 +67,65 @@ function initial() {
     answerContainer.setAttribute("style", "display: block");
     resultContainer.setAttribute("style", "display: block");
 
+    questionContainer.innerHTML = questionArray[index].question;
+    a1.innerHTML = questionArray[index].a;
+    a2.innerHTML = questionArray[index].b;
+    a3.innerHTML = questionArray[index].c;
+    a4.innerHTML = questionArray[index].d;
+
     // centerContainer.textContent = JSON.stringify(questionArray[index]);
-    for (const {question, a, b, c, d, correct} of questionArray) {
-        console.log();
-        questionContainer.textContent = question;
-           a1.textContent = a;
-           a2.textContent = b;
-           a3.textContent = c;
-           a4.textContent = d;
-            // - this will attach the question from the array to h1 and answers to each li
-    }
+    // for (const { question, a, b, c, d, correct } of questionArray) {
+    //   questionContainer.textContent = question;
+    //   a1.textContent = a;
+    //   a2.textContent = b;
+    //   a3.textContent = c;
+    //   a4.textContent = d;
+    //   resultContainer.textContent = correct;
+    // - this will attach the question from the array to h1 and answers to each li
+    // }
+    console.log(index);
 
-
-
+    a1.addEventListener("click", function () {
+        index = index+1
+        questionContainer.innerHTML = questionArray[index].question;
+        a1.innerHTML = questionArray[index].a;
+        a2.innerHTML = questionArray[index].b;
+        a3.innerHTML = questionArray[index].c;
+        a4.innerHTML = questionArray[index].d;
+        console.log(index);
+    });
+    a2.addEventListener("click", function () {
+        index = index+1
+        questionContainer.innerHTML = questionArray[index].question;
+        a1.innerHTML = questionArray[index].a;
+        a2.innerHTML = questionArray[index].b;
+        a3.innerHTML = questionArray[index].c;
+        a4.innerHTML = questionArray[index].d;
+        console.log(index);
+    });
+    a3.addEventListener("click", function () {
+        index = index+1
+        questionContainer.innerHTML = questionArray[index].question;
+        a1.innerHTML = questionArray[index].a;
+        a2.innerHTML = questionArray[index].b;
+        a3.innerHTML = questionArray[index].c;
+        a4.innerHTML = questionArray[index].d;
+        console.log(index);
+    });
+    a4.addEventListener("click", function () {
+        index = index+1
+        questionContainer.innerHTML = questionArray[index].question;
+        a1.innerHTML = questionArray[index].a;
+        a2.innerHTML = questionArray[index].b;
+        a3.innerHTML = questionArray[index].c;
+        a4.innerHTML = questionArray[index].d;
+        console.log(index);
+    });
+    
     // - possible move this into new function later
-    function changeQ() {
+    // function changeQ() {
         
-        
-    }
+    // }
     // questionarray[index].question
   });
 }
