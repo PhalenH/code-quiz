@@ -47,6 +47,20 @@ var questionArray = [
   },
 ];
 
+function countdown() {
+    var secondsLeft = 60;
+    var timeInterval = setInterval(function() {
+        secondsLeft--;
+        timerContainer.textContent = secondsLeft;
+     // timerContainer.textContent += secondsLeft;
+
+        if(secondsLeft === 0) {
+            clearInterval(timeInterval);
+        // -TODO add function call that will display "all done" with final score and input for initials 
+        }
+    }, 1000); 
+}
+
 function initial() {
   var buttonTag = document.createElement("button");
   document.body.appendChild(buttonTag);
@@ -66,6 +80,8 @@ function initial() {
     // - when button clicked hides start quiz and explanation, displays question and answers
     answerContainer.setAttribute("style", "display: block");
     resultContainer.setAttribute("style", "display: block");
+    countdown();
+
 
     questionContainer.innerHTML = questionArray[index].question;
     a1.innerHTML = questionArray[index].a;
@@ -73,16 +89,6 @@ function initial() {
     a3.innerHTML = questionArray[index].c;
     a4.innerHTML = questionArray[index].d;
 
-    // centerContainer.textContent = JSON.stringify(questionArray[index]);
-    // for (const { question, a, b, c, d, correct } of questionArray) {
-    //   questionContainer.textContent = question;
-    //   a1.textContent = a;
-    //   a2.textContent = b;
-    //   a3.textContent = c;
-    //   a4.textContent = d;
-    //   resultContainer.textContent = correct;
-    // - this will attach the question from the array to h1 and answers to each li
-    // }
     console.log(index);
 
     a1.addEventListener("click", function () {
@@ -122,6 +128,19 @@ function initial() {
         console.log(index);
     });
     
+    if (index >= 4) {
+        a1.setAttribute("style", "display: none");
+        a2.setAttribute("style", "display: none");
+        a3.setAttribute("style", "display: none");
+        a4.setAttribute("style", "display: none");
+        questionContainer.textContent = "All done!"
+
+        // all done!
+        // your final score is
+    }
+    // - how to add something to check if correct?
+    // - if statement for if user selected correct li?
+
     // - possible move this into new function later
     // function changeQ() {
         
@@ -168,3 +187,15 @@ initial();
 // -line 11 question.textContent = "this is where I can change the content for each question"
 // -I can probably do this for each answer too
 // -set Id for each answer so that there can be click events and then have it register for right/wrong
+
+
+// centerContainer.textContent = JSON.stringify(questionArray[index]);
+    // for (const { question, a, b, c, d, correct } of questionArray) {
+    //   questionContainer.textContent = question;
+    //   a1.textContent = a;
+    //   a2.textContent = b;
+    //   a3.textContent = c;
+    //   a4.textContent = d;
+    //   resultContainer.textContent = correct;
+    // - this will attach the question from the array to h1 and answers to each li
+    // }gukj
