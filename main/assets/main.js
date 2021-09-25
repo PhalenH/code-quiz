@@ -22,7 +22,7 @@ var questionArray = [
     correct: "",
   },
   {
-    question: "If I want to selct peaches from the array fruit = ['peaches', 'apples', 'grapes'], what value should I select?",
+    question: "If I want to select peaches from the array fruit = ['peaches', 'apples', 'grapes'], what value should I select?",
     a: "0",
     b: "1",
     c: "2",
@@ -40,7 +40,7 @@ var questionArray = [
   {
     question: "When Visiblity: hidden, the selected elements will:",
     a: "Not appear on the screen but takes up space on the page",
-    b: "Not appear on the screen but will not take up space on the page",
+    b: "Not appear on the screen and will not take up space on the page",
     c: "Be removed from the HTML code",
     d: "Not be affected",
     correct: "",
@@ -82,62 +82,41 @@ function initial() {
     resultContainer.setAttribute("style", "display: block");
     countdown();
 
-
-    questionContainer.innerHTML = questionArray[index].question;
-    a1.innerHTML = questionArray[index].a;
-    a2.innerHTML = questionArray[index].b;
-    a3.innerHTML = questionArray[index].c;
-    a4.innerHTML = questionArray[index].d;
+    qa();
 
     console.log(index);
 
     a1.addEventListener("click", function () {
         index = index+1
-        questionContainer.innerHTML = questionArray[index].question;
-        a1.innerHTML = questionArray[index].a;
-        a2.innerHTML = questionArray[index].b;
-        a3.innerHTML = questionArray[index].c;
-        a4.innerHTML = questionArray[index].d;
+        qa();
         console.log(index);
     });
     a2.addEventListener("click", function () {
         index = index+1
-        questionContainer.innerHTML = questionArray[index].question;
-        a1.innerHTML = questionArray[index].a;
-        a2.innerHTML = questionArray[index].b;
-        a3.innerHTML = questionArray[index].c;
-        a4.innerHTML = questionArray[index].d;
+        qa();
         console.log(index);
     });
     a3.addEventListener("click", function () {
         index = index+1
-        questionContainer.innerHTML = questionArray[index].question;
-        a1.innerHTML = questionArray[index].a;
-        a2.innerHTML = questionArray[index].b;
-        a3.innerHTML = questionArray[index].c;
-        a4.innerHTML = questionArray[index].d;
+        qa();
         console.log(index);
     });
     a4.addEventListener("click", function () {
         index = index+1
-        questionContainer.innerHTML = questionArray[index].question;
-        a1.innerHTML = questionArray[index].a;
-        a2.innerHTML = questionArray[index].b;
-        a3.innerHTML = questionArray[index].c;
-        a4.innerHTML = questionArray[index].d;
+        qa();
         console.log(index);
     });
     
-    if (index >= 4) {
-        a1.setAttribute("style", "display: none");
-        a2.setAttribute("style", "display: none");
-        a3.setAttribute("style", "display: none");
-        a4.setAttribute("style", "display: none");
-        questionContainer.textContent = "All done!"
+    // if (index >= 3) {
+    //     a1.setAttribute("style", "display: none");
+    //     a2.setAttribute("style", "display: none");
+    //     a3.setAttribute("style", "display: none");
+    //     a4.setAttribute("style", "display: none");
+    //     questionContainer.textContent = "All done!"
 
-        // all done!
-        // your final score is
-    }
+    //     // all done!
+    //     // your final score is
+    // }
     // - how to add something to check if correct?
     // - if statement for if user selected correct li?
 
@@ -147,6 +126,14 @@ function initial() {
     // }
     // questionarray[index].question
   });
+}
+
+function qa (){
+    questionContainer.innerHTML = questionArray[index].question;
+    a1.innerHTML = questionArray[index].a;
+    a2.innerHTML = questionArray[index].b;
+    a3.innerHTML = questionArray[index].c;
+    a4.innerHTML = questionArray[index].d;
 }
 
 initial();
@@ -190,12 +177,12 @@ initial();
 
 
 // centerContainer.textContent = JSON.stringify(questionArray[index]);
-    // for (const { question, a, b, c, d, correct } of questionArray) {
-    //   questionContainer.textContent = question;
-    //   a1.textContent = a;
-    //   a2.textContent = b;
-    //   a3.textContent = c;
-    //   a4.textContent = d;
-    //   resultContainer.textContent = correct;
-    // - this will attach the question from the array to h1 and answers to each li
-    // }gukj
+//     for (const { question, a, b, c, d, correct } of questionArray) {
+//       questionContainer.textContent = question;
+//       a1.textContent = a;
+//       a2.textContent = b;
+//       a3.textContent = c;
+//       a4.textContent = d;
+//       resultContainer.textContent = correct;
+//     - this will attach the question from the array to h1 and answers to each li
+//     }gukj
