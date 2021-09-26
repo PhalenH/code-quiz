@@ -62,17 +62,20 @@ function countdown() {
 }
 
 function initial() {
-  var buttonTag = document.createElement("button");
-  document.body.appendChild(buttonTag);
-  buttonTag.textContent = "Start Quiz";
-  buttonTag.setAttribute("id", "buttonDisplay");
-  // -created button to start quiz, added content, added id to button
 
   var quizExplain = document.createElement("p");
   document.querySelector("#center").appendChild(quizExplain);
   quizExplain.textContent = "Try and answer the following code-related questions withing the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!";
   quizExplain.setAttribute("id", "quizDisplay");
+  quizExplain.setAttribute("style", "text-align: center;");
   // -created p tag to show initial explanation of what the quiz is and id for p tag to be styled
+  
+  var buttonTag = document.createElement("button");
+  document.querySelector("#center").appendChild(buttonTag);
+  buttonTag.textContent = "Start Quiz";
+  buttonTag.setAttribute("id", "buttonDisplay");
+  // -created button to start quiz, added content, added id to button
+
 
   buttonTag.addEventListener("click", function () {
     buttonTag.setAttribute("style", "display: none");
@@ -83,28 +86,28 @@ function initial() {
     countdown();
 
     if (index <= 3){
-    qa();
+    quiz();
 
     console.log(index);
 
     a1.addEventListener("click", function () {
         index = index+1
-        qa();
+        quiz();
         console.log(index);
     });
     a2.addEventListener("click", function () {
         index = index+1
-        qa();
+        quiz();
         console.log(index);
     });
     a3.addEventListener("click", function () {
         index = index+1
-        qa();
+        quiz();
         console.log(index);
     });
     a4.addEventListener("click", function () {
         index = index+1
-        qa();
+        quiz();
         console.log(index);
     });
 
@@ -137,7 +140,7 @@ function initial() {
   });
 }
 
-function qa (){
+function quiz (){
     questionContainer.innerHTML = questionArray[index].question;
     a1.innerHTML = questionArray[index].a;
     a2.innerHTML = questionArray[index].b;
@@ -183,15 +186,3 @@ initial();
 // -line 11 question.textContent = "this is where I can change the content for each question"
 // -I can probably do this for each answer too
 // -set Id for each answer so that there can be click events and then have it register for right/wrong
-
-
-// centerContainer.textContent = JSON.stringify(questionArray[index]);
-//     for (const { question, a, b, c, d, correct } of questionArray) {
-//       questionContainer.textContent = question;
-//       a1.textContent = a;
-//       a2.textContent = b;
-//       a3.textContent = c;
-//       a4.textContent = d;
-//       resultContainer.textContent = correct;
-//     - this will attach the question from the array to h1 and answers to each li
-//     }
