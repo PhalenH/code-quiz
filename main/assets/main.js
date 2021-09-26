@@ -82,6 +82,7 @@ function initial() {
     resultContainer.setAttribute("style", "display: block");
     countdown();
 
+    if (index <= 3){
     qa();
 
     console.log(index);
@@ -106,13 +107,21 @@ function initial() {
         qa();
         console.log(index);
     });
+
+    } else{
+        a1.setAttribute("style", "display: none");
+        a2.setAttribute("style", "display: none");
+        a3.setAttribute("style", "display: none");
+        a4.setAttribute("style", "display: none");
+        questionContainer.textContent = "All done!"
+    }
     
     // if (index >= 3) {
-    //     a1.setAttribute("style", "display: none");
-    //     a2.setAttribute("style", "display: none");
-    //     a3.setAttribute("style", "display: none");
-    //     a4.setAttribute("style", "display: none");
-    //     questionContainer.textContent = "All done!"
+        // a1.setAttribute("style", "display: none");
+        // a2.setAttribute("style", "display: none");
+        // a3.setAttribute("style", "display: none");
+        // a4.setAttribute("style", "display: none");
+        // questionContainer.textContent = "All done!"
 
     //     // all done!
     //     // your final score is
@@ -185,4 +194,4 @@ initial();
 //       a4.textContent = d;
 //       resultContainer.textContent = correct;
 //     - this will attach the question from the array to h1 and answers to each li
-//     }gukj
+//     }
