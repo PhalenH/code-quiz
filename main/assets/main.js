@@ -11,6 +11,7 @@ var a2 = document.getElementById("2");
 var a3 = document.getElementById("3");
 var a4 = document.getElementById("4");
 var index = 0;
+var secondsLeft = 60;
 // when finished to clean up, could replace function w/ determineAnswer function on line right below
 a1.addEventListener("click", function () {
   determineAnswer(questionArray[index], "a")
@@ -70,20 +71,6 @@ var questionArray = [
   },
 ];
 
-function countdown() {
-    var secondsLeft = 60;
-    var timeInterval = setInterval(function() {
-        secondsLeft--;
-        timeContainer.textContent = secondsLeft;
-     // timerContainer.textContent += secondsLeft;
-
-        if(secondsLeft === 0) {
-            clearInterval(timeInterval);
-        // -TODO add function call that will display "all done" with final score and input for initials 
-        }
-    }, 1000); 
-}
-
 function initial() {
 
   var quizExplain = document.createElement("p");
@@ -126,13 +113,27 @@ function quiz (){
 
 }
 
+function countdown() {
+    var timeInterval = setInterval(function() {
+        secondsLeft--;
+        timeContainer.textContent = secondsLeft;
+     // timerContainer.textContent += secondsLeft;
+
+        if(secondsLeft === 0) {
+            clearInterval(timeInterval);
+        // -TODO add function call that will display "all done" with final score and input for initials 
+        }
+    }, 1000); 
+}
+
 function determineAnswer (question, answer){
   console.log(answer, question.correct);
   let testResponse = "Wrong!";
   if (answer === question.correct){ 
     testResponse = "Correct!";
     } else{
-
+      secondsLeft -= 10;
+      timeContainer.textContent = secondsLeft;
     }  
   resultContainer.setAttribute("style", "display: block");
   resultContainer.innerHTML = testResponse
