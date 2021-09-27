@@ -159,10 +159,10 @@ function doneQuiz (){
   finalScore.innerHTML = `Your final score is ${secondsLeft}`;
   formContainer.setAttribute("style", "display: block")
 
-  formContainer.addEventListener("submit", function(event){
-  event.preventDefault();
-  localStorage.setItem("highscores", JSON.stringify(nameHighscore));
+  formContainer.addEventListener("submit", function(){
+  localStorage.setItem("highscores", JSON.stringify(highscores));
   console.log(nameHighscore);
+// when submit it clicked, it stores object including user's initials and score they got
 
   displayHighscore();
   finalScore.setAttribute("style", "display: none")
@@ -173,14 +173,19 @@ function doneQuiz (){
 var userInput = document.getElementById("initial-text"); 
 // why does queryselector not work here, also why is this not logging the user input?
 var nameHighscore = {
-  userInitial: userInput.value,
-  score: secondsLeft
+  score: secondsLeft,
+  userInitial: userInput.value
 };
+var highscores = [nameHighscore];
 
-var highscores = [];
 function displayHighscore (){
   questionContainer.innerHTML = "Highscores";
-  
+  renderHighscores();
+}
+
+function renderHighscores() {
+  answerContainer.innerHTML= "";
+
   for (var i= 0; i < highscores.length; i++){
     var highscore = highscores[i];
 
@@ -189,14 +194,9 @@ function displayHighscore (){
     li.setAttribute("data-index", i);
 
     li.appendChild(answerContainer)
-  }
+  };
+}  
 
-  // todo
-  // create 2 buttons for go back or reset
-  // added ordered list
-  // add initials to local storage and getItem for displaying that in highscores
-
-}
 doneQuiz();
 // initial();
 
