@@ -126,6 +126,9 @@ function countdown() {
             clearInterval(timeInterval);
         // -TODO: add function call that will display "all done" with final score and input for initials 
         }
+        if (index >=4) {
+          clearInterval(timeInterval);
+        }
         // TODO: second if statement for when all questions answered
     }, 1000); 
 }
