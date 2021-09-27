@@ -12,7 +12,7 @@
     <!-- need 3-5 containers to access -->
     <div>
         <section id= "clock">
-            <p>TIME:   <p id= "time"></p></p>
+            <p>TIME:<p id= "time"></p></p>
         </section>
 
         <section>
@@ -27,14 +27,12 @@
             <li id="2"></li>
             <li id="3"></li>
             <li id="4"></li>
-            <!-- <li><button id="1"></button></li>
-            <li><button id="2"></button></li>
-            <li><button id="3"></button></li>
-            <li><button id="4"></button></li> -->
-
-            <!--have click event to determine if they chose right answer, 
-               if/else statement to reduce time if wrong and display Correct/Wrong below answers -->
         </ol>
+        <form id= userForm>
+            <label for="initial-text">Enter Initials:</label>
+            <input type="text" placeholder="Your initials here" id="initial-text" name="initial-text">
+            <input type="submit" value="submit">
+        </form>
     </section>
     <section>
         <h2 id= "result"></h2>    

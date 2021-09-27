@@ -6,13 +6,15 @@ var answerContainer = document.getElementById("answer");
 var resultContainer = document.getElementById("result");
 var timeContainer = document.getElementById("time");
 var highScoreContainer = document.getElementById("highScore");
+var formContainer = document.getElementById("userForm");
 var a1 = document.getElementById("1");
 var a2 = document.getElementById("2");
 var a3 = document.getElementById("3");
 var a4 = document.getElementById("4");
 var index = 0;
 var secondsLeft = 60;
-// when finished to clean up, could replace function w/ determineAnswer function on line right below
+
+// when finished to clean up, could try & replace function w/ determineAnswer function on line right below
 a1.addEventListener("click", function () {
   determineAnswer(questionArray[index], "a")
   index+=1
@@ -73,9 +75,11 @@ var questionArray = [
 
 function initial() {
 
+  formContainer.setAttribute("style", "display:none")
+
   var quizExplain = document.createElement("p");
   document.querySelector("#center").appendChild(quizExplain);
-  quizExplain.textContent = "Try and answer the following code-related questions withing the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!";
+  quizExplain.textContent = "Try and answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!";
   quizExplain.setAttribute("id", "quizDisplay");
   quizExplain.setAttribute("style", "text-align: center;");
   // -created p tag to show initial explanation of what the quiz is and id for p tag to be styled
@@ -85,6 +89,7 @@ function initial() {
   buttonTag.textContent = "Start Quiz";
   buttonTag.setAttribute("id", "buttonDisplay");
   // -created button to start quiz, added content, added id to button
+
 
 
   buttonTag.addEventListener("click", function () {
@@ -143,6 +148,32 @@ function quizDelay (){
   setTimeout(quiz, 1000);
 }
 
+function doneQuiz (){
+  answerContainer.setAttribute("style", "display: none")
+  questionContainer.innerHTML = "All Done!";
+
+  var finalScore = document.createElement("p");
+  document.querySelector("#center").appendChild(finalScore);
+  finalScore.innerHTML = `Your final score is ${secondsLeft}`;
+  formContainer.setAttribute("style", "display: block")
+
+  formContainer.addEventListener("submit", function(event){
+  event.preventDefault();
+  displayHighscore();
+  finalScore.setAttribute("style", "display: none")
+  // changes header to all done, created p element which is taken away after sumbitted,
+  });
+}
+
+function displayHighscore (){
+  questionContainer.innerHTML = "Highscores";
+  // todo
+  // create 2 buttons for go back or reset
+  // added ordered list
+  // add initials to local storage and getItem for displaying that in highscores
+
+}
+// doneQuiz();
 initial();
 
 
