@@ -90,8 +90,6 @@ function initial() {
   buttonTag.setAttribute("id", "buttonDisplay");
   // -created button to start quiz, added content, added id to button
 
-
-
   buttonTag.addEventListener("click", function () {
     buttonTag.setAttribute("style", "display: none");
     quizExplain.setAttribute("style", "display: none");
@@ -149,7 +147,11 @@ function quizDelay (){
 }
 
 function doneQuiz (){
-  answerContainer.setAttribute("style", "display: none")
+  // document.querySelectorAll("li").setAttribute("style", "display: none") - why doesn't this work with queryselectorAll
+  a1.setAttribute("style", "display: none")
+  a2.setAttribute("style", "display: none")
+  a3.setAttribute("style", "display: none")
+  a4.setAttribute("style", "display: none")
   questionContainer.innerHTML = "All Done!";
 
   var finalScore = document.createElement("p");
@@ -159,22 +161,44 @@ function doneQuiz (){
 
   formContainer.addEventListener("submit", function(event){
   event.preventDefault();
+  localStorage.setItem("highscores", JSON.stringify(nameHighscore));
+  console.log(nameHighscore);
+
   displayHighscore();
   finalScore.setAttribute("style", "display: none")
   // changes header to all done, created p element which is taken away after sumbitted,
   });
 }
 
+var userInput = document.getElementById("initial-text"); 
+// why does queryselector not work here, also why is this not logging the user input?
+var nameHighscore = {
+  userInitial: userInput.value,
+  score: secondsLeft
+};
+
+var highscores = [];
 function displayHighscore (){
   questionContainer.innerHTML = "Highscores";
+  
+  for (var i= 0; i < highscores.length; i++){
+    var highscore = highscores[i];
+
+    var li = document.createElement("li");
+    li.textContent = highscore;
+    li.setAttribute("data-index", i);
+
+    li.appendChild(answerContainer)
+  }
+
   // todo
   // create 2 buttons for go back or reset
   // added ordered list
   // add initials to local storage and getItem for displaying that in highscores
 
 }
-// doneQuiz();
-initial();
+doneQuiz();
+// initial();
 
 
 // - if/else statements to determine if correct or wrong
