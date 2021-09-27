@@ -160,13 +160,11 @@ function doneQuiz (){
   formContainer.setAttribute("style", "display: block")
 
   formContainer.addEventListener("submit", function(){
-  localStorage.setItem("highscores", JSON.stringify(highscores));
-  console.log(nameHighscore);
-// when submit it clicked, it stores object including user's initials and score they got
-
+  storeHigscores();
   displayHighscore();
   finalScore.setAttribute("style", "display: none")
   // changes header to all done, created p element which is taken away after sumbitted,
+  // when submit it clicked, it stores object including user's info & displays these scores
   });
 }
 
@@ -180,31 +178,35 @@ var highscores = [nameHighscore];
 
 function displayHighscore (){
   questionContainer.innerHTML = "Highscores";
+  var storedHighscores = JSON.parse(localStorage.getItem("highscores"));
+
+  if (storedHighscores !== null) {
+    highscores = storedHighscores;
+  }
   renderHighscores();
 }
 
 function renderHighscores() {
   answerContainer.innerHTML= "";
-
   for (var i= 0; i < highscores.length; i++){
     var highscore = highscores[i];
 
     var li = document.createElement("li");
     li.textContent = highscore;
     li.setAttribute("data-index", i);
-
     li.appendChild(answerContainer)
   };
 }  
+
+function storeHigscores {
+  localStorage.setItem("highscores", JSON.stringify(highscores));
+}
+
 
 doneQuiz();
 // initial();
 
 
-// - if/else statements to determine if correct or wrong
-// - a way to subtract certain amount of time when wrong
-// - some tag that will display briefly after answer is selected
-// - a way to change the container which will include the question/answer/whether right or wrong
 
 // after questions answered
 // - timer stops after last question answered
@@ -222,14 +224,6 @@ doneQuiz();
 // - go back will reset to original screen
 // - reset highscores will remove <ol>
 
-// } else{
-    //     a1.setAttribute("style", "display: none");
-    //     a2.setAttribute("style", "display: none");
-    //     a3.setAttribute("style", "display: none");
-    //     a4.setAttribute("style", "display: none");
-    //     questionContainer.textContent = "All done!"
-    // }
-
 //completed:
 
 // initial screen
@@ -241,3 +235,8 @@ doneQuiz();
 
 // after start quiz is selcted
 // - time = however long for quiz (top right)
+
+// - if/else statements to determine if correct or wrong
+// - a way to subtract certain amount of time when wrong
+// - some tag that will display briefly after answer is selected
+// - a way to change the container which will include the question/answer/whether right or wrong
