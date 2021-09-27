@@ -124,8 +124,9 @@ function countdown() {
 
         if(secondsLeft === 0) {
             clearInterval(timeInterval);
-        // -TODO add function call that will display "all done" with final score and input for initials 
+        // -TODO: add function call that will display "all done" with final score and input for initials 
         }
+        // TODO: second if statement for when all questions answered
     }, 1000); 
 }
 
@@ -143,9 +144,14 @@ function determineAnswer (question, answer){
 }
 
 function quizDelay (){
+  if (index >=4) {
+    doneQuiz();
+  }
+  else {
   setTimeout(quiz, 1000);
+  }
 }
-
+var highscores = [];
 function doneQuiz (){
   // document.querySelectorAll("li").setAttribute("style", "display: none") - why doesn't this work with queryselectorAll
   a1.setAttribute("style", "display: none")
@@ -160,10 +166,17 @@ function doneQuiz (){
   formContainer.setAttribute("style", "display: block")
 
   formContainer.addEventListener("submit", function(event) {
-  // event.preventDefault();
-  // console.log(userInput.value)
-  // console.log(nameHighscore)
-  // why is th user input not showing up when I call the object?
+  event.preventDefault();
+  var userInput = document.getElementById("initial-text");
+  console.log(userInput.value)
+
+// why does queryselector not work here, also why is this not logging the user input?
+  var nameHighscore = {
+  score: secondsLeft,
+  userInitial: userInput.value
+};
+console.log(nameHighscore)
+  highscores.push(nameHighscore);
   storeHigscores();
   displayHighscore();
   finalScore.setAttribute("style", "display: none")
@@ -171,15 +184,6 @@ function doneQuiz (){
   // when submit it clicked, it stores object including user's info & displays these scores
   });
 }
-
-var userInput = document.getElementById("initial-text"); 
-// why does queryselector not work here, also why is this not logging the user input?
-var nameHighscore = {
-  score: secondsLeft,
-  userInitial: userInput.value
-};
-// TODO - figure out why userInput value isn't being stored in object and
-var highscores = [nameHighscore];
 
 function displayHighscore (){
   questionContainer.innerHTML = "Highscores";
