@@ -15,23 +15,23 @@ var index = 0;
 a1.addEventListener("click", function () {
   determineAnswer(questionArray[index], "a")
   index+=1
-  quiz();
+  quizDelay();
   // use setTimeout for the quiz function, delays iteration to next question
 });
 a2.addEventListener("click", function () {
   determineAnswer(questionArray[index], "b")
   index+=1
-  quiz();
+  quizDelay();
 });
 a3.addEventListener("click", function () { 
   determineAnswer(questionArray[index], "c")
   index+=1
-  quiz();
+  quizDelay();
 });
 a4.addEventListener("click", function () {
   determineAnswer(questionArray[index], "d")
   index+=1
-  quiz();
+  quizDelay();
 });
 
 // -variables to use with functions and if/else statement and to adjust text.Content
@@ -136,6 +136,10 @@ function determineAnswer (question, answer){
     }  
   resultContainer.setAttribute("style", "display: block");
   resultContainer.innerHTML = testResponse
+}
+
+function quizDelay (){
+  setTimeout(quiz, 1000);
 }
 
 initial();

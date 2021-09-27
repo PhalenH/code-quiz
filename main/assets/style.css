@@ -28,3 +28,7 @@ li {
 #clock {
     display: flex;
 }
+
+#result {
+    text-align: center;
+}
