@@ -159,7 +159,11 @@ function doneQuiz (){
   finalScore.innerHTML = `Your final score is ${secondsLeft}`;
   formContainer.setAttribute("style", "display: block")
 
-  formContainer.addEventListener("submit", function(){
+  formContainer.addEventListener("submit", function(event) {
+  // event.preventDefault();
+  // console.log(userInput.value)
+  // console.log(nameHighscore)
+  // why is th user input not showing up when I call the object?
   storeHigscores();
   displayHighscore();
   finalScore.setAttribute("style", "display: none")
@@ -174,6 +178,7 @@ var nameHighscore = {
   score: secondsLeft,
   userInitial: userInput.value
 };
+// TODO - figure out why userInput value isn't being stored in object and
 var highscores = [nameHighscore];
 
 function displayHighscore (){
@@ -198,13 +203,11 @@ function renderHighscores() {
   };
 }  
 
-function storeHigscores {
+function storeHigscores() {
   localStorage.setItem("highscores", JSON.stringify(highscores));
 }
 
-
-doneQuiz();
-// initial();
+initial();
 
 
 
