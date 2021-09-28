@@ -71,6 +71,14 @@ var questionArray = [
     "d": "Not be affected",
     correct: "b",
   },
+  {
+    question: "What does JS stand for:",
+    "a": "Just stop",
+    "b": "Junior Sorcerer",
+    "c": "JavaScript",
+    "d": "JavaSauce",
+    correct: "c",
+  },
 ];
 
 function initial() {
@@ -126,7 +134,7 @@ function countdown() {
             clearInterval(timeInterval);
         // -TODO: add function call that will display "all done" with final score and input for initials 
         }
-        if (index >=4) {
+        if (index >=5) {
           clearInterval(timeInterval);
         }
         // TODO: second if statement for when all questions answered
@@ -147,7 +155,7 @@ function determineAnswer (question, answer){
 }
 
 function quizDelay (){
-  if (index >=4) {
+  if (index >=5) {
     doneQuiz();
   }
   else {
@@ -161,29 +169,32 @@ function doneQuiz (){
   a2.setAttribute("style", "display: none")
   a3.setAttribute("style", "display: none")
   a4.setAttribute("style", "display: none")
+  resultContainer.setAttribute("style", "display: none")
+
   questionContainer.innerHTML = "All Done!";
 
   var finalScore = document.createElement("p");
   document.querySelector("#center").appendChild(finalScore);
   finalScore.innerHTML = `Your final score is ${secondsLeft}`;
   formContainer.setAttribute("style", "display: block")
+  // changes header to all done, created p element which is taken away after sumbitted
 
   formContainer.addEventListener("submit", function(event) {
   event.preventDefault();
   var userInput = document.getElementById("initial-text");
   console.log(userInput.value)
 
-// why does queryselector not work here, also why is this not logging the user input?
+// why is this not logging the user input? - it was because userInput var was outside the function and so was called immediately and filled in blank
   var nameHighscore = {
   score: secondsLeft,
   userInitial: userInput.value
 };
+
 console.log(nameHighscore)
   highscores.push(nameHighscore);
   storeHigscores();
   displayHighscore();
   finalScore.setAttribute("style", "display: none")
-  // changes header to all done, created p element which is taken away after sumbitted,
   // when submit it clicked, it stores object including user's info & displays these scores
   });
 }
