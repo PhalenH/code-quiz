@@ -192,6 +192,9 @@ function doneQuiz (){
 
 console.log(nameHighscore)
   highscores.push(nameHighscore);
+  // var storedHighscores = JSON.parse(localStorage.getItem("highscores"));
+  // need to grab highscores from local storage, push that into new array where new users will provide input
+  // grab value and setting to highscore, then pushing new highscore, should happen before push on 194
   storeHigscores();
   displayHighscore();
   finalScore.setAttribute("style", "display: none")
@@ -202,26 +205,35 @@ console.log(nameHighscore)
 function displayHighscore (){
   questionContainer.innerHTML = "Highscores";
   var storedHighscores = JSON.parse(localStorage.getItem("highscores"));
-
+ console.log(storedHighscores)
   if (storedHighscores !== null) {
     highscores = storedHighscores;
   }
+  // document.getElementById("userForm").setAttribute("style", "display: none")
   renderHighscores();
+  
 }
 
 function renderHighscores() {
   answerContainer.innerHTML= "";
-  for (var i= 0; i < highscores.length; i++){
-    var highscore = highscores[i];
 
+  console.log(highscores);
+  for (var i= 0; i < highscores.length; i++){
+    var highscoreInitial = highscores[i].userInitial;
+    var highScore = highscores[i].score;
+
+    // var ol = document.createElement("ol");
+    // ol.appendChild(centerContainer);
     var li = document.createElement("li");
-    li.textContent = highscore;
     li.setAttribute("data-index", i);
-    li.appendChild(answerContainer)
+    document.querySelector("#answer").appendChild(li);
+    li.textContent = `${highscoreInitial} ${highScore}`;
+    
   };
 }  
 
 function storeHigscores() {
+  console.log(highscores)
   localStorage.setItem("highscores", JSON.stringify(highscores));
 }
 
