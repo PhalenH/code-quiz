@@ -81,22 +81,25 @@ var questionArray = [
   },
 ];
 
+var quizExplain = document.createElement("p");
+var buttonTag = document.createElement("button");
 function initial() {
 
   formContainer.setAttribute("style", "display:none")
   questionContainer.innerHTML = "Coding Quiz Challenge";
 
-  var quizExplain = document.createElement("p");
+  // var quizExplain = document.createElement("p");
   document.querySelector("#center").appendChild(quizExplain);
   quizExplain.textContent = "Try and answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!";
   quizExplain.setAttribute("id", "quizDisplay");
   quizExplain.setAttribute("style", "text-align: center;");
   // -created p tag to show initial explanation of what the quiz is and id for p tag to be styled
   
-  var buttonTag = document.createElement("button");
+  // var buttonTag = document.createElement("button");
   document.querySelector("#center").appendChild(buttonTag);
   buttonTag.textContent = "Start Quiz";
   buttonTag.setAttribute("id", "buttonDisplay");
+  buttonTag.setAttribute("style", "background-color: skyblue");
   // -created button to start quiz, added content, added id to button
 
   buttonTag.addEventListener("click", function () {
@@ -156,7 +159,7 @@ function quizDelay (){
     doneQuiz();
   }
   else {
-  setTimeout(quiz, 1000);
+  setTimeout(quiz, 500);
   }
 }
 var highscores = [];
@@ -187,7 +190,6 @@ function doneQuiz (){
 
   var userInput = document.getElementById("initial-text");
 
-// why is this not logging the user input? - it was because userInput var was outside the function and so was called immediately and filled in blank
   var nameHighscore = {
   score: secondsLeft,
   userInitial: userInput.value
@@ -245,6 +247,7 @@ var bottomContainer = document.getElementById("bottom");
 function goBackReset () {
   var goBackButton = document.createElement("button");
   goBackButton.setAttribute("id", "back-button");
+  goBackButton.setAttribute("style", "background-color: skyblue");
   goBackButton.textContent = "Go back";
   bottomContainer.appendChild(goBackButton)
   goBackButton.addEventListener("click", function() {
@@ -253,6 +256,7 @@ function goBackReset () {
 
   var clearHighscoreButton = document.createElement("button");
   clearHighscoreButton.setAttribute("id", "clear-button");
+  clearHighscoreButton.setAttribute("style", "background-color: skyblue; padding; 10px; margin; 10px");
   clearHighscoreButton.textContent = "Clear Highscores";
   bottomContainer.appendChild(clearHighscoreButton)
   clearHighscoreButton.addEventListener("click", function() {
@@ -260,6 +264,15 @@ function goBackReset () {
     localStorage.clear();
   });
 }
+
+function viewHighscore (){
+  highScoreContainer.addEventListener("click", function() {
+    buttonTag.setAttribute("style", "display: none");
+    quizExplain.setAttribute("style", "display: none");
+    displayHighscore();
+  });
+}
+viewHighscore();
 
 initial();
 
@@ -274,12 +287,6 @@ initial();
 
 // once initials submitted
 // - timer and view highscores no longer visible at top of screen
-// <h1> Highscores </h1>
-// <ol><li> value from initials and score</li></ol>
-// -I'll need a way to add items to <ol>
-// -2 buttons for "go back" and "clear highscores"
-// - go back will reset to original screen
-// - reset highscores will remove <ol>
 
 //completed:
 
@@ -297,3 +304,10 @@ initial();
 // - a way to subtract certain amount of time when wrong
 // - some tag that will display briefly after answer is selected
 // - a way to change the container which will include the question/answer/whether right or wrong
+
+// <h1> Highscores </h1>
+// <ol><li> value from initials and score</li></ol>
+// -I'll need a way to add items to <ol>
+// -2 buttons for "go back" and "clear highscores"
+// - go back will reset to original screen
+// - reset highscores will remove <ol>
