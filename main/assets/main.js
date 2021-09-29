@@ -111,10 +111,6 @@ function initial() {
 }
 
 function quiz (){
-  // within here have some type of loop
-  // at the end of the loop it will increment index
-  //
-  console.log("call quiz", index)
   resultContainer.setAttribute("style", "display: none");
     questionContainer.innerHTML = questionArray[index].question;
     a1.innerHTML = questionArray[index].a;
@@ -163,6 +159,7 @@ function quizDelay (){
   }
 }
 var highscores = [];
+// var storedHighscores = JSON.parse(localStorage.getItem("highscores")); // ADDED THIS
 function doneQuiz (){
   // document.querySelectorAll("li").setAttribute("style", "display: none") - why doesn't this work with queryselectorAll
   a1.setAttribute("style", "display: none")
@@ -181,8 +178,13 @@ function doneQuiz (){
 
   formContainer.addEventListener("submit", function(event) {
   event.preventDefault();
+  // if (userInput === "") {
+  //   alert("Cannot submit without initials, try again.");
+  //   return;
+  // }
+  // trying to prevent not being able to submit empty input
+
   var userInput = document.getElementById("initial-text");
-  console.log(userInput.value)
 
 // why is this not logging the user input? - it was because userInput var was outside the function and so was called immediately and filled in blank
   var nameHighscore = {
@@ -191,10 +193,11 @@ function doneQuiz (){
 };
 
 console.log(nameHighscore)
+  // highscores.push(storedHighscores); // ADDED THIS
   highscores.push(nameHighscore);
   // var storedHighscores = JSON.parse(localStorage.getItem("highscores"));
-  // need to grab highscores from local storage, push that into new array where new users will provide input
-  // grab value and setting to highscore, then pushing new highscore, should happen before push on 194
+  // need to grab highscores from local storage
+  // grab value and set to highscore, then pushing new highscore, should happen before push of highscore.namehighscore
   storeHigscores();
   displayHighscore();
   finalScore.setAttribute("style", "display: none")
@@ -222,19 +225,32 @@ function renderHighscores() {
     var highscoreInitial = highscores[i].userInitial;
     var highScore = highscores[i].score;
 
-    // var ol = document.createElement("ol");
-    // ol.appendChild(centerContainer);
     var li = document.createElement("li");
     li.setAttribute("data-index", i);
     document.querySelector("#answer").appendChild(li);
     li.textContent = `${highscoreInitial} ${highScore}`;
     
   };
+  goBackReset();
 }  
 
 function storeHigscores() {
   console.log(highscores)
   localStorage.setItem("highscores", JSON.stringify(highscores));
+}
+
+var bottomContainer = document.getElementById("bottom");
+
+function goBackReset () {
+  var goBackButton = document.createElement("button");
+  goBackButton.setAttribute("id", "back-button");
+  goBackButton.textContent = "Go back";
+  bottomContainer.appendChild(goBackButton)
+
+  var clearHighscoreButton = document.createElement("button");
+  clearHighscoreButton.setAttribute("id", "clear-button");
+  clearHighscoreButton.textContent = "Clear Highscores";
+  bottomContainer.appendChild(clearHighscoreButton)
 }
 
 initial();
