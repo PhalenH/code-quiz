@@ -10,6 +10,10 @@ div {
 
 li {
     padding: 10px 5px;
+    margin: 5px;
+    background-color: skyblue;
+    border: black solid 3px;
+    border-radius: 10px;
 }
 
 #answer, #result {
@@ -23,10 +27,17 @@ li {
 }
 #question {
     text-align: center;
+    padding: 5px;
+    background-color: skyblue;
+    border: 5px;
+    border-radius: 10px;
 }
 
 #clock {
     display: flex;
+    background-color: pink;
+    border: 5px;
+    border-radius: 100%;
 }
 
 #result {

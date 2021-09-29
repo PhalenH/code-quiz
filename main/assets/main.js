@@ -84,6 +84,7 @@ var questionArray = [
 function initial() {
 
   formContainer.setAttribute("style", "display:none")
+  questionContainer.innerHTML = "Coding Quiz Challenge";
 
   var quizExplain = document.createElement("p");
   document.querySelector("#center").appendChild(quizExplain);
@@ -246,11 +247,17 @@ function goBackReset () {
   goBackButton.setAttribute("id", "back-button");
   goBackButton.textContent = "Go back";
   bottomContainer.appendChild(goBackButton)
+  goBackButton.addEventListener("click", function() {
+    location.reload();
+  });
 
   var clearHighscoreButton = document.createElement("button");
   clearHighscoreButton.setAttribute("id", "clear-button");
   clearHighscoreButton.textContent = "Clear Highscores";
   bottomContainer.appendChild(clearHighscoreButton)
+  clearHighscoreButton.addEventListener("click", function() {
+    initial();
+  });
 }
 
 initial();
