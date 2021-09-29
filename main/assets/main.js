@@ -13,7 +13,6 @@ var a3 = document.getElementById("3");
 var a4 = document.getElementById("4");
 var index = 0;
 var secondsLeft = 60;
-
 var quizExplain = document.createElement("p");
 var buttonTag = document.createElement("button");
 
@@ -22,18 +21,15 @@ function initial() {
   formContainer.setAttribute("style", "display:none")
   questionContainer.innerHTML = "Coding Quiz Challenge";
 
-  // var quizExplain = document.createElement("p");
   document.querySelector("#center").appendChild(quizExplain);
   quizExplain.textContent = "Try and answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!";
   quizExplain.setAttribute("id", "quizDisplay");
   quizExplain.setAttribute("style", "text-align: center;");
   
-  // var buttonTag = document.createElement("button");
   document.querySelector("#center").appendChild(buttonTag);
   buttonTag.textContent = "Start Quiz";
   buttonTag.setAttribute("id", "buttonDisplay");
   buttonTag.setAttribute("style", "background-color: skyblue");
-  // -created button to start quiz, added content, added id to button
 
   buttonTag.addEventListener("click", function () {
     buttonTag.setAttribute("style", "display: none");
@@ -62,8 +58,9 @@ function countdown() {
         timeContainer.textContent = secondsLeft;
      // timerContainer.textContent += secondsLeft;
 
-        if(secondsLeft === 0) {
+        if(secondsLeft <= 0) {
             clearInterval(timeInterval);
+            doneQuiz();
         }
         if (index >=5) {
           clearInterval(timeInterval);
@@ -75,8 +72,7 @@ function countdown() {
 function quizDelay (){
   if (index >=5) {
     doneQuiz();
-  }
-  else {
+  } else {
   setTimeout(quiz, 500);
   }
 }
@@ -112,29 +108,37 @@ function doneQuiz (){
   userInitial: userInput.value
 };
 
-console.log(nameHighscore)
+// console.log(nameHighscore)
   highscores.concat(storedHighscores);
   highscores.push(nameHighscore);
+  
+  console.log(highscores, storedHighscores)
+  
   storeHigscores();
+
+  console.log(highscores, storedHighscores)
+
   displayHighscore();
   finalScore.setAttribute("style", "display: none")
   // when submit it clicked, it stores object including user's info & displays these scores
   });
 }
 function storeHigscores() {
-  console.log(highscores)
+  // console.log(highscores)
   localStorage.setItem("highscores", JSON.stringify(highscores));
 }
 
 function displayHighscore (){
   questionContainer.innerHTML = "Highscores";
   // var storedHighscores = JSON.parse(localStorage.getItem("highscores"));
- console.log(storedHighscores)
+//  console.log(storedHighscores)
   if (storedHighscores !== null) {
     highscores = storedHighscores;
   }
   // document.getElementById("userForm").setAttribute("style", "display: none")
   // recomment this when listing highscores is fixed !!!
+  
+  console.log(highscores, storedHighscores)
   renderHighscores();
   
 }
@@ -142,7 +146,7 @@ function displayHighscore (){
 function renderHighscores() {
   answerContainer.innerHTML= "";
 
-  console.log(highscores);
+  // console.log(highscores);
   for (var i= 0; i < highscores.length; i++){
     var highscoreInitial = highscores[i].userInitial;
     var highScore = highscores[i].score;
@@ -189,7 +193,7 @@ function viewHighscore (){
 }
 
 function determineAnswer (question, answer){
-  console.log(answer, question.correct);
+  // console.log(answer, question.correct);
   let testResponse = "Wrong!";
   if (answer === question.correct){ 
     testResponse = "Correct!";
