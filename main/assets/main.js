@@ -53,6 +53,7 @@ function quiz (){
 }
 
 function countdown() {
+  timeContainer.textContent = secondsLeft;
     var timeInterval = setInterval(function() {
         secondsLeft--;
         timeContainer.textContent = secondsLeft;
@@ -77,8 +78,9 @@ function quizDelay (){
   }
 }
 var highscores = [];
-var storedHighscores = JSON.parse(localStorage.getItem("highscores"));
-
+if (localStorage.getItem("highscores") != null){
+highscores = JSON.parse(localStorage.getItem("highscores"));
+};
 function doneQuiz (){
   a1.setAttribute("style", "display: none")
   a2.setAttribute("style", "display: none")
@@ -92,7 +94,7 @@ function doneQuiz (){
   document.querySelector("#center").appendChild(finalScore);
   finalScore.innerHTML = `Your final score is ${secondsLeft}`;
   formContainer.setAttribute("style", "display: block")
-
+  
   formContainer.addEventListener("submit", function(event) {
   event.preventDefault();
   // if (userInput === "") {
@@ -109,36 +111,22 @@ function doneQuiz (){
 };
 
 // console.log(nameHighscore)
-  highscores.concat(storedHighscores);
+
   highscores.push(nameHighscore);
-  
-  console.log(highscores, storedHighscores)
-  
-  storeHigscores();
-
-  console.log(highscores, storedHighscores)
-
+  saveHighscores();
   displayHighscore();
+
   finalScore.setAttribute("style", "display: none")
-  // when submit it clicked, it stores object including user's info & displays these scores
   });
 }
-function storeHigscores() {
-  // console.log(highscores)
+
+function saveHighscores() {
   localStorage.setItem("highscores", JSON.stringify(highscores));
 }
 
 function displayHighscore (){
-  questionContainer.innerHTML = "Highscores";
-  // var storedHighscores = JSON.parse(localStorage.getItem("highscores"));
-//  console.log(storedHighscores)
-  if (storedHighscores !== null) {
-    highscores = storedHighscores;
-  }
-  // document.getElementById("userForm").setAttribute("style", "display: none")
-  // recomment this when listing highscores is fixed !!!
-  
-  console.log(highscores, storedHighscores)
+  questionContainer.innerHTML = "Highscores"; 
+  document.getElementById("userForm").setAttribute("style", "display: none")
   renderHighscores();
   
 }
@@ -146,7 +134,6 @@ function displayHighscore (){
 function renderHighscores() {
   answerContainer.innerHTML= "";
 
-  // console.log(highscores);
   for (var i= 0; i < highscores.length; i++){
     var highscoreInitial = highscores[i].userInitial;
     var highScore = highscores[i].score;
@@ -179,7 +166,7 @@ function goBackReset () {
   bottomContainer.appendChild(clearHighscoreButton)
   clearHighscoreButton.addEventListener("click", function() {
     answerContainer.textContent = ""
-    localStorage.clear();
+    localStorage.removeItem("highscores");
   });
 }
 
