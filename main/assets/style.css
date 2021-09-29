@@ -16,6 +16,11 @@ li {
     border-radius: 10px;
 }
 
+li:hover {
+    /* background-color: skyblue; */
+    background-color: mediumturquoise;
+}
+
 #answer, #result {
     display: none;
 }
@@ -35,7 +40,7 @@ li {
 
 #clock {
     display: flex;
-    background-color: pink;
+    background-color:palegreen ;
     border: 5px;
     border-radius: 100%;
 }
