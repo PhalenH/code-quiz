@@ -84,7 +84,7 @@ var questionArray = [
 var quizExplain = document.createElement("p");
 var buttonTag = document.createElement("button");
 function initial() {
-
+  
   formContainer.setAttribute("style", "display:none")
   questionContainer.innerHTML = "Coding Quiz Challenge";
 
@@ -163,7 +163,7 @@ function quizDelay (){
   }
 }
 var highscores = [];
-// var storedHighscores = JSON.parse(localStorage.getItem("highscores")); // ADDED THIS
+var storedHighscores = JSON.parse(localStorage.getItem("highscores"));
 function doneQuiz (){
   // document.querySelectorAll("li").setAttribute("style", "display: none") - why doesn't this work with queryselectorAll
   a1.setAttribute("style", "display: none")
@@ -196,7 +196,7 @@ function doneQuiz (){
 };
 
 console.log(nameHighscore)
-  // highscores.push(storedHighscores); // ADDED THIS
+  highscores.concat(storedHighscores);
   highscores.push(nameHighscore);
   // var storedHighscores = JSON.parse(localStorage.getItem("highscores"));
   // need to grab highscores from local storage
@@ -210,12 +210,13 @@ console.log(nameHighscore)
 
 function displayHighscore (){
   questionContainer.innerHTML = "Highscores";
-  var storedHighscores = JSON.parse(localStorage.getItem("highscores"));
+  // var storedHighscores = JSON.parse(localStorage.getItem("highscores"));
  console.log(storedHighscores)
   if (storedHighscores !== null) {
     highscores = storedHighscores;
   }
   // document.getElementById("userForm").setAttribute("style", "display: none")
+  // recomment this when listing highscores is fixed !!!
   renderHighscores();
   
 }
@@ -311,3 +312,23 @@ initial();
 // -2 buttons for "go back" and "clear highscores"
 // - go back will reset to original screen
 // - reset highscores will remove <ol>
+
+// if (!highscores){
+//   document.createElement("li");
+//   li.setAttribute("data-index", i);
+//   document.querySelector("#answer").appendChild(li);
+//   li.textContent = `${nameHighscore.userInitial} ${nameHighscore.score}`;
+// }
+// else {
+//   console.log(highscores);
+// for (var i= 0; i < highscores.length; i++){
+//   var highscoreInitial = highscores[i].userInitial;
+//   var highScore = highscores[i].score;
+
+//   var li = document.createElement("li");
+//   li.setAttribute("data-index", i);
+//   document.querySelector("#answer").appendChild(li);
+//   li.textContent = `${highscoreInitial} ${highScore}`;
+  
+// };
+// }
