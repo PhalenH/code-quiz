@@ -83,6 +83,7 @@ var questionArray = [
 
 var quizExplain = document.createElement("p");
 var buttonTag = document.createElement("button");
+
 function initial() {
   
   formContainer.setAttribute("style", "display:none")
@@ -93,7 +94,6 @@ function initial() {
   quizExplain.textContent = "Try and answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!";
   quizExplain.setAttribute("id", "quizDisplay");
   quizExplain.setAttribute("style", "text-align: center;");
-  // -created p tag to show initial explanation of what the quiz is and id for p tag to be styled
   
   // var buttonTag = document.createElement("button");
   document.querySelector("#center").appendChild(buttonTag);
@@ -105,7 +105,6 @@ function initial() {
   buttonTag.addEventListener("click", function () {
     buttonTag.setAttribute("style", "display: none");
     quizExplain.setAttribute("style", "display: none");
-    // - when button clicked hides start quiz and explanation, displays question and answers
     answerContainer.setAttribute("style", "display: block");
     // resultContainer.setAttribute("style", "display: block");
     countdown();
@@ -132,26 +131,12 @@ function countdown() {
 
         if(secondsLeft === 0) {
             clearInterval(timeInterval);
-        // -TODO: add function call that will display "all done" with final score and input for initials 
         }
         if (index >=5) {
           clearInterval(timeInterval);
         }
         // TODO: second if statement for when all questions answered
     }, 1000); 
-}
-
-function determineAnswer (question, answer){
-  console.log(answer, question.correct);
-  let testResponse = "Wrong!";
-  if (answer === question.correct){ 
-    testResponse = "Correct!";
-    } else{
-      secondsLeft -= 10;
-      timeContainer.textContent = secondsLeft;
-    }  
-  resultContainer.setAttribute("style", "display: block");
-  resultContainer.innerHTML = testResponse
 }
 
 function quizDelay (){
@@ -164,8 +149,8 @@ function quizDelay (){
 }
 var highscores = [];
 var storedHighscores = JSON.parse(localStorage.getItem("highscores"));
+
 function doneQuiz (){
-  // document.querySelectorAll("li").setAttribute("style", "display: none") - why doesn't this work with queryselectorAll
   a1.setAttribute("style", "display: none")
   a2.setAttribute("style", "display: none")
   a3.setAttribute("style", "display: none")
@@ -178,7 +163,6 @@ function doneQuiz (){
   document.querySelector("#center").appendChild(finalScore);
   finalScore.innerHTML = `Your final score is ${secondsLeft}`;
   formContainer.setAttribute("style", "display: block")
-  // changes header to all done, created p element which is taken away after sumbitted
 
   formContainer.addEventListener("submit", function(event) {
   event.preventDefault();
@@ -198,14 +182,15 @@ function doneQuiz (){
 console.log(nameHighscore)
   highscores.concat(storedHighscores);
   highscores.push(nameHighscore);
-  // var storedHighscores = JSON.parse(localStorage.getItem("highscores"));
-  // need to grab highscores from local storage
-  // grab value and set to highscore, then pushing new highscore, should happen before push of highscore.namehighscore
   storeHigscores();
   displayHighscore();
   finalScore.setAttribute("style", "display: none")
   // when submit it clicked, it stores object including user's info & displays these scores
   });
+}
+function storeHigscores() {
+  console.log(highscores)
+  localStorage.setItem("highscores", JSON.stringify(highscores));
 }
 
 function displayHighscore (){
@@ -238,11 +223,6 @@ function renderHighscores() {
   goBackReset();
 }  
 
-function storeHigscores() {
-  console.log(highscores)
-  localStorage.setItem("highscores", JSON.stringify(highscores));
-}
-
 var bottomContainer = document.getElementById("bottom");
 
 function goBackReset () {
@@ -273,6 +253,20 @@ function viewHighscore (){
     displayHighscore();
   });
 }
+
+function determineAnswer (question, answer){
+  console.log(answer, question.correct);
+  let testResponse = "Wrong!";
+  if (answer === question.correct){ 
+    testResponse = "Correct!";
+    } else{
+      secondsLeft -= 10;
+      timeContainer.textContent = secondsLeft;
+    }  
+  resultContainer.setAttribute("style", "display: block");
+  resultContainer.innerHTML = testResponse
+}
+
 viewHighscore();
 
 initial();
