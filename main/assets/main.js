@@ -256,7 +256,8 @@ function goBackReset () {
   clearHighscoreButton.textContent = "Clear Highscores";
   bottomContainer.appendChild(clearHighscoreButton)
   clearHighscoreButton.addEventListener("click", function() {
-    initial();
+    answerContainer.textContent = ""
+    localStorage.clear();
   });
 }
 
