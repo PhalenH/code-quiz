@@ -41,6 +41,7 @@ function initial() {
     quiz();
   });
 }
+// end of initial function
 
 function quiz (){
   resultContainer.setAttribute("style", "display: none");
@@ -51,6 +52,7 @@ function quiz (){
     a4.innerHTML = questionArray[index].d;
 
 }
+// end of quiz function
 
 function countdown() {
   timeContainer.textContent = secondsLeft;
@@ -69,6 +71,7 @@ function countdown() {
         // TODO: second if statement for when all questions answered
     }, 1000); 
 }
+// end of countdown function
 
 function quizDelay (){
   if (index >=5) {
@@ -77,6 +80,8 @@ function quizDelay (){
   setTimeout(quiz, 500);
   }
 }
+// end of quizDelay function
+
 var highscores = [];
 if (localStorage.getItem("highscores") != null){
 highscores = JSON.parse(localStorage.getItem("highscores"));
@@ -119,6 +124,7 @@ function doneQuiz (){
   finalScore.setAttribute("style", "display: none")
   });
 }
+// end of doneqQuiz function
 
 function saveHighscores() {
   localStorage.setItem("highscores", JSON.stringify(highscores));
@@ -261,26 +267,3 @@ var questionArray = [
 viewHighscore();
 
 initial();
-
-
-
-
-// if (!highscores){
-//   document.createElement("li");
-//   li.setAttribute("data-index", i);
-//   document.querySelector("#answer").appendChild(li);
-//   li.textContent = `${nameHighscore.userInitial} ${nameHighscore.score}`;
-// }
-// else {
-//   console.log(highscores);
-// for (var i= 0; i < highscores.length; i++){
-//   var highscoreInitial = highscores[i].userInitial;
-//   var highScore = highscores[i].score;
-
-//   var li = document.createElement("li");
-//   li.setAttribute("data-index", i);
-//   document.querySelector("#answer").appendChild(li);
-//   li.textContent = `${highscoreInitial} ${highScore}`;
-  
-// };
-// }
